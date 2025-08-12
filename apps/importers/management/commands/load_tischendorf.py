@@ -71,7 +71,7 @@ from apps.core.models import Language, License, Server
 
 
 # TODO: Some of this might be better defined as SETTING
-SOURCE_URL = "http://files.morphgnt.org/tischendorf/Tischendorf-2.6.zip"
+SOURCE_URL = "https://github.com/morphgnt/tischendorf-data/archive/refs/heads/master.zip"
 # No more hard-coding work_ids in importers
 #WORK_ID = 1
 
@@ -163,7 +163,7 @@ class Command(BaseCommand):
         
         # Work for Qere edition (Kethiv is base text)
         importer.work1 = Work(
-            title        = "Tischendorf 8th ed. v2.6 Qere (Corrected)",
+            title        = "Tischendorf 8th ed. v2.8 Qere (Corrected)",
             language     = Language('grc'),
             type         = 'Bible',
             osis_slug    = 'Tischendorf',
@@ -204,7 +204,7 @@ class Command(BaseCommand):
 
             importer.create_paragraph()
 
-            for line in StringIO.StringIO(_zip.read("Tischendorf-2.6/Unicode/" + BOOK_FILENAME_LOOKUP[book_code])):
+            for line in StringIO.StringIO(_zip.read("tischendorf-data-master/word-per-line/2.8/Unicode/" + BOOK_FILENAME_LOOKUP[book_code])):
                 in_paragraph = 0
                 lineNumber += 1
                 lineMatches = LINE_PARSER.match(unicodedata.normalize("NFC", unicode(line, 'utf-8')))
